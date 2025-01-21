@@ -82,7 +82,9 @@ port (
   -- FPGA LEDs
   signal LED              : out   std_logic_vector(7 downto 0);
   -- FPGA Switches
-  signal SW               : in    std_logic_vector(3 downto 0)
+  signal SW               : in    std_logic_vector(3 downto 0);
+  signal uart0_rx			  : in std_logic;
+  signal uart0_tx			  : out std_logic
 
 );
 end de10_nano_clean;
@@ -161,7 +163,10 @@ architecture behavioral of de10_nano_clean is
     hps_io_hps_io_gpio_inst_GPIO53  : inout std_logic := 'X';
     hps_io_hps_io_gpio_inst_GPIO54  : inout std_logic := 'X';
     hps_io_hps_io_gpio_inst_GPIO61  : inout std_logic := 'X';
-    hps_0_h2f_reset_reset_n         : out   std_logic
+    hps_0_h2f_reset_reset_n         : out   std_logic;
+	 pio_0_export                    : out   std_logic_vector(7 downto 0);
+	 uart_0_rxd                      : in    std_logic := 'X';
+	 uart_0_txd                      : out   std_logic
   );
   end component de10_nano_clean_soc;
 
@@ -244,7 +249,10 @@ begin
     hps_io_hps_io_gpio_inst_GPIO53  => HPS_LED,
     hps_io_hps_io_gpio_inst_GPIO54  => HPS_KEY,
     hps_io_hps_io_gpio_inst_GPIO61  => HPS_GSENSOR_INT,
-    hps_0_h2f_reset_reset_n         => reset
+    hps_0_h2f_reset_reset_n         => reset,
+	 pio_0_export                    => LED,
+	 uart_0_rxd                      => uart0_rx,
+	 uart_0_txd                      => uart0_tx
   );
 
 end behavioral;
