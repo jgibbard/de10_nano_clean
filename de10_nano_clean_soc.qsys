@@ -659,7 +659,7 @@
   <parameter name="simTrueBaud" value="false" />
   <parameter name="stopBits" value="1" />
   <parameter name="syncRegDepth" value="2" />
-  <parameter name="useCtsRts" value="false" />
+  <parameter name="useCtsRts" value="true" />
   <parameter name="useEopRegister" value="false" />
   <parameter name="useRelativePathForSimFile" value="false" />
  </module>
